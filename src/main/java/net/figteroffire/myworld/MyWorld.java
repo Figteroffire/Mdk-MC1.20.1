@@ -1,6 +1,8 @@
 package net.figteroffire.myworld;
 
 import com.mojang.logging.LogUtils;
+import net.figteroffire.myworld.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -26,6 +28,8 @@ public class MyWorld {
     public MyWorld() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModItems.register(modEventBus);
+
 
         modEventBus.addListener(this::commonSetup);
 
@@ -42,7 +46,9 @@ public class MyWorld {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event){
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.RATIO);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
