@@ -13,6 +13,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> RATIO = ITEMS.register("ratio",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BANANE = ITEMS.register("banane",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }
